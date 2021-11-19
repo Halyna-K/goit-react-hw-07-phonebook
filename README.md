@@ -1,3 +1,3 @@
-# goit-react-hw-06-phonebook
-Homework #6 
+# goit-react-hw-07-phonebook
+Homework #7 
 Phonebook (Redux)
