@@ -3,14 +3,13 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from "../../redux/apiContacts/operation";
-import { getContacts } from '../../redux/apiContacts/selectors';
+import {contactsOperations, contactsSelectors} from '../../redux/apiContacts';
 
 function ContactForm () {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(contactsSelectors.getContacts);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -31,7 +30,7 @@ function ContactForm () {
     if (sameName) {
       alert(`${obj.name} is already in contacts!`);
     } else {
-      dispatch(addContact({...obj}, obj.id));
+      dispatch(contactsOperations.addContact({...obj}, obj.id));
     }
   }
 

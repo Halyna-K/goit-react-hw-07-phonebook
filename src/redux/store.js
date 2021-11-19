@@ -30,6 +30,8 @@ import { contactsList, contactFilter, loading, error } from './apiContacts/reduc
 const contactReducer = combineReducers({
     contacts: contactsList,
     filter: contactFilter,
+    loading,
+    error,
   });
 
 // const persistedContactReducer = persistReducer(persistConfig, contactReducer);

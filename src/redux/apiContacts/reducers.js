@@ -3,8 +3,7 @@ import { getContactRequest, getContactSuccess, getContactError, addContactReques
 
 export const contactsList = createReducer([], {
   [getContactSuccess]: (_, {payload}) => payload,
-  [addContactSuccess]: (state, {payload}) => {
-    return [...state, payload]},
+  [addContactSuccess]: (state, {payload}) => {return [...state, payload]},
   [deleteContactSuccess]: (state, {payload}) => state.filter(({id}) => id !== payload ),
   [getContactError]: (_, action) => {},
 })
@@ -26,6 +25,7 @@ export const loading = createReducer(false, {
 
 export const error = createReducer(null, {
   [getContactError]: (_, action) => action.payload,
+  [getContactRequest]:()=> null,
 })
 
 export const contactFilter = createReducer ('', {

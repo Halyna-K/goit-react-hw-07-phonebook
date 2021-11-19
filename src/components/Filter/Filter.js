@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import s from "./Filter.module.css";
-import { useEffect, useCallback } from "react";
+import { useCallback } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { filterValue } from '../../redux/apiContacts/actions';
 import { getFilter } from '../../redux/apiContacts/selectors';

@@ -4,21 +4,19 @@ import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from 'react-redux';
-import { getFilteredContacts } from '../../redux/apiContacts/selectors';
-import { getContacts, deleteContact } from '../../redux/apiContacts/operation';
+import {contactsOperations, contactsSelectors} from '../../redux/apiContacts';
 
 const ContactList = () => {
-
-  const contacts = useSelector(getFilteredContacts);
+  const contacts = useSelector(contactsSelectors.getFilteredContacts);
   const dispatch = useDispatch();
 
 //  const [query, setQuery] = useState("");
-// const [page, setPage] = useState(1);
+//  const [page, setPage] = useState(1);
 
  useEffect(() => {
 //     if (!query) return;
 //    setQuery()
-  dispatch(getContacts())
+  dispatch(contactsOperations.getFetchContacts())
 //    dispatch(getContacts(query,page))
   // setPage((prev) => prev + 1);
    }, [dispatch]);
@@ -33,7 +31,7 @@ return (
           id= {id}
           variant="outline-secondary"
           onClick={() => (
-            dispatch(deleteContact(id))
+            dispatch(contactsOperations.deleteContact(id))
           )}
         >
           Delete

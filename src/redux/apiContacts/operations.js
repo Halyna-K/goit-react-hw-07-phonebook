@@ -1,11 +1,14 @@
-import { getContactRequest, getContactSuccess, getContactError,addContactRequest, addContactSuccess, addContactError,deleteContactRequest,deleteContactSuccess, deleteContactError } from "../apiContacts/actions";
+import { getContactRequest, getContactSuccess, getContactError,addContactRequest, addContactSuccess, addContactError,deleteContactRequest,deleteContactSuccess, deleteContactError } from "./actions";
 import api from "../../Services/api";
 
-export const getContacts = () => dispatch => {
+export const getFetchContacts = () => async dispatch => {
     dispatch(getContactRequest());
-     api.fetchContacts()
-        .then(res => dispatch(getContactSuccess(res.data)))
-        .catch (err => dispatch(getContactError(err)))
+    try {
+        const result = await api.fetchContacts();
+        dispatch(getContactSuccess(result.data));
+    } catch (err) {
+        dispatch(getContactError(err))
+    }
 }
 
 export const addContact = ({id, name, number}) => dispatch => {
