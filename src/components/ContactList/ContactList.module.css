@@ -5,5 +5,5 @@
 .text {
   display: inline-block;
   margin: 10px;
-  font-size: calc(6px + 2vmin);
+  font-size: calc(7px + 2vmin);
 }

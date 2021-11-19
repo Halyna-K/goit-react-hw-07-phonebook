@@ -11,7 +11,6 @@ import {contactsOperations, contactsSelectors} from '../../redux/apiContacts';
 const ContactList = () => {
   const contacts = useSelector(contactsSelectors.getFilteredContacts);
   const dispatch = useDispatch();
-
 //  const [query, setQuery] = useState("");
 //  const [page, setPage] = useState(1);
 
