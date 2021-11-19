@@ -5,6 +5,8 @@ import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from 'react-redux';
 import {contactsOperations, contactsSelectors} from '../../redux/apiContacts';
+// import { getFilteredContacts } from '../../redux/apiContacts/selectors';
+// import { getFetchContacts, deleteContact } from '../../redux/apiContacts/operations';
 
 const ContactList = () => {
   const contacts = useSelector(contactsSelectors.getFilteredContacts);

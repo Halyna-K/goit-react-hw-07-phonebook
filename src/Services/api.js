@@ -11,7 +11,7 @@ const fetchContacts = async () => {
 }
 
 const fetchAddContact = async (contact) => {
-  return await axios.post('/contacts',contact)
+  return await axios.post('/contacts', contact)
 }
 
 const fetchDeleteContact = async (id) => {
