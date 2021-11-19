@@ -1,10 +1,8 @@
-// import { createStore } from "redux";
-// import { composeWithDevTools } from 'redux-devtools-extension';
 import { configureStore, getDefaultMiddleware,combineReducers } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import {
-    persistStore,
-    persistReducer,
+    // persistStore,
+    // persistReducer,
     FLUSH,
     REHYDRATE,
     PAUSE,
@@ -12,34 +10,46 @@ import {
     PURGE,
     REGISTER,
   } from "redux-persist"
-import storage from 'redux-persist/lib/storage'
-import  {contactsList, contactFilter } from "./contacts/reducers";
+// import storage from 'redux-persist/lib/storage'
+// import  {contactsList, contactFilter } from "./contacts/reducers";
 
-// export const store = createStore(contactReducer,composeWithDevTools());
+import { contactsList, contactFilter, loading, error } from './apiContacts/reducers';
 
-const persistConfig = {
-    key: 'contacts',
-    storage,
-    blacklist: ['filter'],
-}
+// const apiContacts = combineReducers ({
+//   contacts,
+//   loading,
+//   error
+// })
+
+// const persistConfig = {
+//     key: 'contacts',
+//     storage,
+//     blacklist: ['filter'],
+// }
+
 const contactReducer = combineReducers({
     contacts: contactsList,
     filter: contactFilter,
   });
 
-const persistedContactReducer = persistReducer(persistConfig, contactReducer);
+// const persistedContactReducer = persistReducer(persistConfig, contactReducer);
 
 const middleware = [...getDefaultMiddleware ({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
-}), logger ];
+}),
+logger
+];
 
 const store = configureStore({
-    reducer: persistedContactReducer,
+    reducer: contactReducer,
+    // persistedContactReducer,
+    // { contacts: persistedContactReducer,
+      // apiContacts: apiContacts},
     middleware,
     devTools: process.env.NODE_ENV === 'development',
 })
-const persistor = persistStore (store);
+// const persistor = persistStore (store);
 
-export default { store, persistor }
+export default store;

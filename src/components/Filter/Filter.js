@@ -1,16 +1,17 @@
 import PropTypes from "prop-types";
-import { v4 as uuid } from "uuid";
 import s from "./Filter.module.css";
-import { useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { filterValue } from '../../redux/contacts/actions';
-import { getFilter } from '../../redux/contacts/selectors';
+import { filterValue } from '../../redux/apiContacts/actions';
+import { getFilter } from '../../redux/apiContacts/selectors';
 
-const nameId = uuid();
 
 const Filter = () => {
+
   const filter = useSelector(getFilter);
   const dispatch = useDispatch()
+
+
   const changeFilter = useCallback( e =>
     {
     // setFilter(e.target.value); // local
@@ -19,10 +20,10 @@ const Filter = () => {
      [dispatch]);
 
   return (
-  <label htmlFor={nameId} value={filter} className={s.filter}>
+  <label htmlFor={filter.id} value={filter} className={s.filter}>
     Find contact by name
     <input
-      id={nameId}
+      id={filter.id}
       onChange={changeFilter}
       className={s.input}
       type="text"

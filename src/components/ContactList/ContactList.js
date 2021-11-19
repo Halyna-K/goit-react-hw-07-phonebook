@@ -1,14 +1,27 @@
+import { useEffect } from "react";
 import s from "./ContactList.module.css";
 import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from 'react-redux';
-import { getFilteredContacts } from '../../redux/contacts/selectors';
-import { deleteContact } from '../../redux/contacts/actions'
+import { getFilteredContacts } from '../../redux/apiContacts/selectors';
+import { getContacts, deleteContact } from '../../redux/apiContacts/operation';
 
 const ContactList = () => {
-const contacts = useSelector(getFilteredContacts);
-const dispatch = useDispatch();
+
+  const contacts = useSelector(getFilteredContacts);
+  const dispatch = useDispatch();
+
+//  const [query, setQuery] = useState("");
+// const [page, setPage] = useState(1);
+
+ useEffect(() => {
+//     if (!query) return;
+//    setQuery()
+  dispatch(getContacts())
+//    dispatch(getContacts(query,page))
+  // setPage((prev) => prev + 1);
+   }, [dispatch]);
 
 return (
   <ul className={s.list}>

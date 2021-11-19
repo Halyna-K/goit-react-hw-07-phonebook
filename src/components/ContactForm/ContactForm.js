@@ -1,14 +1,10 @@
 import s from "./ContactForm.module.css";
 import { useState } from "react";
-import { v4 as uuid } from "uuid";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contacts/actions';
-import {getContacts} from '../../redux/contacts/selectors';
-
-const nameId = uuid();
-const numberId = uuid();
+import { addContact } from "../../redux/apiContacts/operation";
+import { getContacts } from '../../redux/apiContacts/selectors';
 
 function ContactForm () {
   const [name, setName] = useState("");
@@ -41,7 +37,7 @@ function ContactForm () {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const contact = {id: uuid(), name, number };
+    const contact = { name, number };
     addNewContact(contact)
     setName("");
     setNumber("");
@@ -49,11 +45,11 @@ function ContactForm () {
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>
-      <label className={s.label} htmlFor={nameId}>
+      <label className={s.label} htmlFor={name.id}>
         Name
       </label>
       <input
-        id={nameId}
+        id={name.id}
         onChange={handleChange}
         className={s.input}
         type="text"
@@ -64,11 +60,11 @@ function ContactForm () {
         title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
         required
       />
-      <label className={s.label} htmlFor={numberId}>
+      <label className={s.label} htmlFor={number.id}>
         Number
       </label>
       <input
-        id={numberId}
+        id={number.id}
         onChange={handleChange}
         className={s.input}
         type="tel"
